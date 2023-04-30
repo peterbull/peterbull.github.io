@@ -4,18 +4,14 @@ project:
 website:
   title: "peterbull.github.io"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+    right:
+      - about.ipynb
+      - icon: github
+        href: https://github.com/peterbull
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true
 
-execute:
-  freeze: auto
 
 
