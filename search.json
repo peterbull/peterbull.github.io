@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Peter Bull",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nWelcome to a blogging EXPERIENCE\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 30, 2023\n\n\nPeter Bull\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nWELCOME(goodbye all caps)\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 30, 2023\n\n\nPeter Bull\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -16,8 +16,8 @@
   {
     "objectID": "posts/230430-welcome/welcome.html",
     "href": "posts/230430-welcome/welcome.html",
-    "title": "Welcome to a blogging EXPERIENCE",
+    "title": "WELCOME(goodbye all caps)",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Hello to anyone out there curious enough to read my blog! There are a lot of fancy bells and whistles on the internet, and I’m honored you’ve chosen my little chirp to spend your theoretical-attention-economy dollars on.\n\nSo, a little about me, and what I’m trying to accomplish here:\nI’m a currently a project and BIM manager for an Architecture firm. That generally involves designing the thing that’s going to get built, coordinating with the people who will actually build the thing that’s going to get built, making sure they use 1/2” Lag Bolts in the thing that’s going to get built, you get the idea.\nI actually don’t have any formal training in Architecture, but it was a career path that I wanted to persue after working for a few start-up companies that went belly up. It’s something I definitely enjoy, but anyone that works in the field will tell you that the tools of the trade are a bit clunky and outdated to say the least. The distance between what’s in your head and what’s construction-ready is a lot larger than I think it can or ought to be.\nEnter my girlfriend, who’s working on finishing her PhD, focused on machine learning and intentionality. She began working through the fastai deep learning for coders course at the recommendation of several colleagues and encouraged me to work through it alongside her.\nFast forward a couple months, and here we are! I’m currently working through the second half of the fastai course and am excited to continue exploring what deep learning has to offer. If I can utilize it in some way to narrow the chasm between brain and built, I’ll consider it a resounding success.\nFor now, I’m happy to just keep learning, and to share my journey with anyone that wants to follow along."
   }
 ]
