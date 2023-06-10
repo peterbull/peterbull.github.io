@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://peterbull.github.io/index.html</loc>
-    <lastmod>2023-05-05T18:16:37.239Z</lastmod>
+    <lastmod>2023-06-10T00:26:57.194Z</lastmod>
   </url>
   <url>
     <loc>https://peterbull.github.io/about.html</loc>
-    <lastmod>2023-05-05T18:16:37.439Z</lastmod>
+    <lastmod>2023-06-10T00:26:57.384Z</lastmod>
   </url>
   <url>
     <loc>https://peterbull.github.io/posts/230505-sd-pipeline/sd-pipeline.html</loc>
-    <lastmod>2023-05-05T18:16:38.169Z</lastmod>
+    <lastmod>2023-06-10T00:26:58.044Z</lastmod>
   </url>
   <url>
     <loc>https://peterbull.github.io/posts/230430-welcome/welcome.html</loc>
-    <lastmod>2023-05-05T18:16:38.389Z</lastmod>
+    <lastmod>2023-06-10T00:26:58.244Z</lastmod>
+  </url>
+  <url>
+    <loc>https://peterbull.github.io/posts/230609-k-means/k_means.html</loc>
+    <lastmod>2023-06-10T00:26:59.134Z</lastmod>
   </url>
 </urlset>

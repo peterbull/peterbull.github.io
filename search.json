@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Peter Bull",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nLessons Learned & Creating a Stable Diffusion Pipeline\n\n\n\n\n\n\n\nDiffusion\n\n\n\n\nUnwrapping the hugging face stable diffusion pipeline a bit.\n\n\n\n\n\n\nMay 5, 2023\n\n\nPeter Bull\n\n\n\n\n\n\n  \n\n\n\n\nWelcome\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 30, 2023\n\n\nPeter Bull\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nImplementing K-Means Clustering\n\n\n\n\n\n\n\nData Science\n\n\nAlgorithms\n\n\n\n\nImplementing a Simple K-Means Clustering Algorithm\n\n\n\n\n\n\nJun 9, 2023\n\n\nPeter Bull\n\n\n\n\n\n\n  \n\n\n\n\nLessons Learned & Creating a Stable Diffusion Pipeline\n\n\n\n\n\n\n\nDiffusion\n\n\n\n\nUnwrapping the hugging face stable diffusion pipeline a bit.\n\n\n\n\n\n\nMay 5, 2023\n\n\nPeter Bull\n\n\n\n\n\n\n  \n\n\n\n\nWelcome\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 30, 2023\n\n\nPeter Bull\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -26,5 +26,61 @@
     "title": "Welcome",
     "section": "",
     "text": "Hello to anyone out there curious enough to read my blog! There are a lot of fancy bells and whistles on the internet, and I’m honored you’ve chosen my little chirp to spend your theoretical-attention-economy dollars on.\n\nSo, a little about me, and what I’m trying to accomplish here:\nI’m a currently a project and BIM manager for an Architecture firm. That generally involves designing the thing that’s going to get built, coordinating with the people who will actually build the thing that’s going to get built, making sure they use 1/2” Lag Bolts in the thing that’s going to get built, you get the idea.\nI actually don’t have any formal training in Architecture, but it was a career path that I wanted to persue after working for a few start-up companies that went belly up. It’s something I definitely enjoy, but anyone that works in the field will tell you that the tools of the trade are a bit clunky and outdated to say the least. The distance between what’s in your head and what’s construction-ready is a lot larger than I think it can or ought to be.\nEnter my girlfriend, who’s working on finishing her PhD, focused on machine learning and intentionality. She began working through the fastai deep learning for coders course at the recommendation of several colleagues and encouraged me to work through it alongside her.\nFast forward a couple months, and here we are! I’m currently working through the second half of the fastai course and am excited to continue exploring what deep learning has to offer. If I can utilize it in some way to narrow the chasm between brain and built, I’ll consider it a resounding success.\nFor now, I’m happy to just keep learning, and to share my journey with anyone that wants to follow along."
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html",
+    "href": "posts/230609-k-means/k_means.html",
+    "title": "Implementing K-Means Clustering",
+    "section": "",
+    "text": "This is my simple implementation of a K-Means Clustering algorithm, foregoing Within Cluster Sum of Squares and the Elbow Rule\nK-Means is a clustering algorithm that groups data as specified by the user (number of clusters, k). It assigns data points to the closest cluster based on the calculated distances.\nHere are the general steps: - Generate random centroids - Calculate the distance of each datapoint to each centroid - Assign each datapoint to the centroid it’s closest to - Recalculate the centroids as the mean of all datapoints assigned to a cluster - Repeat the cluster assignment and update until the algorithm converges\nfrom fastkaggle import get_dataset\nfrom pathlib import Path\nfrom fastai.tabular.all import *"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#dataset",
+    "href": "posts/230609-k-means/k_means.html#dataset",
+    "title": "Implementing K-Means Clustering",
+    "section": "Dataset",
+    "text": "Dataset\nMy first attempt at a clustering algorithm was a botched attempt at a DBSCAN from scratch. I wanted to use a dataset that was clearly segmented visually for ease of tracking what was happening. I haven’t quite worked out the kinks in the DBSCAN notebook yet, but I don’t see any harm in using it for k-means as well.\nThe data we’re going to target is the spending score as it relates to annual income\n\npath = Path('data/dbscan')\ndataset = 'vjchoudhary7/customer-segmentation-tutorial-in-python'\nif not path.exists():\n    data = get_dataset(path, dataset, unzip=True)\ndf = pd.read_csv(path/'Mall_Customers.csv', low_memory=False)\n\n\ndf.head()\n\n\n\n\n\n\n\n\nCustomerID\nGender\nAge\nAnnual Income (k$)\nSpending Score (1-100)\n\n\n\n\n0\n1\nMale\n19\n15\n39\n\n\n1\n2\nMale\n21\n15\n81\n\n\n2\n3\nFemale\n20\n16\n6\n\n\n3\n4\nFemale\n23\n16\n77\n\n\n4\n5\nFemale\n31\n17\n40"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#plotting-the-target-datapoints",
+    "href": "posts/230609-k-means/k_means.html#plotting-the-target-datapoints",
+    "title": "Implementing K-Means Clustering",
+    "section": "Plotting the Target Datapoints",
+    "text": "Plotting the Target Datapoints\n\nx = df['Annual Income (k$)']\ny = df['Spending Score (1-100)']\nplt.scatter(x,y)\nplt.xlabel('Annual Income (k$)')\nplt.ylabel('Spending Score (1-100)')\nplt.show()\n\n\n\n\nConvert the pandas dataframe to a pytorch tensor to utilize the GPU\n\nx_y_tens = torch.from_numpy(df.to_numpy()[:,3:].astype(float)).to(\"cuda\")"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#picking-k-centroids",
+    "href": "posts/230609-k-means/k_means.html#picking-k-centroids",
+    "title": "Implementing K-Means Clustering",
+    "section": "Picking k Centroids",
+    "text": "Picking k Centroids\nFirst, a random set of centroids is generated. This is the starting point for our clustering process. The centroids are the central points of our clusters. In this implementation, the number of centroids is chosen by a pretty clear visual grouping pattern in the data\n\nk = 5\n\nNext, we randomly pick those k random points as the initial cluster centroids\n\nsample_idxs = torch.randperm(x_y_tens.shape[0])[:5]\ncentroids = x_y_tens[sample_idxs]\ncentroids\n\ntensor([[60., 50.],\n        [63., 48.],\n        [38., 92.],\n        [73., 73.],\n        [88., 15.]], device='cuda:0', dtype=torch.float64)\n\n\nHere I’m just cloning the original centroids to use in a later animation\n\nog_centroids = centroids.clone()\n\nDetaching the tensors to numpy to plot gets pretty tedious, so here I’m creating a function to lighten the load just a bit.\n\ndef np_detach(tens):\n    return tens.detach().cpu().numpy()\n\nPlotting the initial data with centroids marked\n\nx = np_detach(x_y_tens)[:,0]\ny = np_detach(x_y_tens)[:,1]\n\nfig, ax = plt.subplots()\nax.scatter(x, y)\nfor cen in centroids:\n    ax.plot(np_detach(cen)[0], np_detach(cen)[1], markersize=10, marker=\"x\", color='r', mew=5)"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#calculating-the-distance-with-frobenius-norm",
+    "href": "posts/230609-k-means/k_means.html#calculating-the-distance-with-frobenius-norm",
+    "title": "Implementing K-Means Clustering",
+    "section": "Calculating the Distance with Frobenius Norm",
+    "text": "Calculating the Distance with Frobenius Norm\n\\[| A |{F} = \\sqrt{\\sum{i=1}^{m} \\sum_{j=1}^{n} |a_{ij}|^2} \\]\nThe Frobenius Norm is essentially the square root of the sum of the absolute squares of its elements. It’s essentially a way to “flatten” the matrix into a long vector, and then compute the Euclidean length of that vector.\nThis will allow us to calculate our distances by way of two tensors, rather than elementwise operation\n\ndef euclidean_dist(a, b):\n    return torch.norm(a-b, dim=-1)"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#calculate-distance-to-centroids-and-assign",
+    "href": "posts/230609-k-means/k_means.html#calculate-distance-to-centroids-and-assign",
+    "title": "Implementing K-Means Clustering",
+    "section": "Calculate distance to centroids and assign",
+    "text": "Calculate distance to centroids and assign\nNow we calculate the distance of each data point to each centroid\n\ndistances = euclidean_dist(x_y_tens.unsqueeze(1), centroids.unsqueeze(0))\n\nThen, assign each point to its nearest cluster\n\ncluster_assignments = torch.argmin(distances, dim=1)\n\nHere I’m just making another copy for later use in an animation\n\nog_cluster_assignments = cluster_assignments.clone()\n\nPlotting our initial cluster assignments:\n\ndef plot_clusters(data, centroids, assignments):\n    plt.clf()\n    data, centroids, assignments = np_detach(data), np_detach(centroids), np_detach(assignments)\n    plt.scatter(data[:,0], data[:,1], c=assignments, s=30)\n    plt.scatter(centroids[:,0], centroids[:,1], marker='x', color='red', s=60)\n\n\nplot_clusters(x_y_tens, centroids, cluster_assignments)\n\n\n\n\nWe’ll need to iterate several times over these steps, so we’ll start aggregating them into functions\n\ndef assign_to_nearest_centroid(data, centroids):\n    distances = euclidean_dist(data.unsqueeze(1), centroids.unsqueeze(0))\n    cluster_assignments = torch.argmin(distances, dim=1)\n    return cluster_assignments\n\nNow that we’ve assigned all datapoints to clusters, we have to update the centroids. This is done by taking the mean of all data points assigned to a cluster, resulting in a new centroid\n\ndef update_centroids(data, cluster_assignments, centroids): \n    new_centroids = torch.zeros_like(centroids)\n    for i in range(centroids.shape[0]):\n        assigned_points = data[cluster_assignments == i]\n        if len(assigned_points) &gt; 0:\n            new_centroids[i] = torch.mean(assigned_points, dim=0)\n    return new_centroids\n\n\nnew_centroids = update_centroids(x_y_tens, cluster_assignments, centroids)\n\nPlotting our centroid update:\n\nplot_clusters(x_y_tens, new_centroids, cluster_assignments)"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#repeat",
+    "href": "posts/230609-k-means/k_means.html#repeat",
+    "title": "Implementing K-Means Clustering",
+    "section": "Repeat",
+    "text": "Repeat\nNow we’ll run through the assignment/update loop several times and hopefully converge in the process\n\ndef k_means(data, centroids, iterations=10):\n    for i in range(iterations):\n        cluster_assignments = assign_to_nearest_centroid(data, centroids)\n        new_centroids = update_centroids(data, cluster_assignments, centroids)\n    cluster_assignments = assign_to_nearest_centroid(data, centroids)\n    return cluster_assignments, new_centroids\n\n\ncluster_assignments, centroids = k_means(x_y_tens, centroids)\n\n\nplot_clusters(x_y_tens, centroids, cluster_assignments)"
+  },
+  {
+    "objectID": "posts/230609-k-means/k_means.html#animation",
+    "href": "posts/230609-k-means/k_means.html#animation",
+    "title": "Implementing K-Means Clustering",
+    "section": "Animation",
+    "text": "Animation\nFinally, we’ll use our original centroids and cluster assignments to see it in action\n\ncentroids = og_centroids\ncluster_assignments = og_cluster_assignments\n\n\nfrom matplotlib.animation import FuncAnimation\nfrom IPython.display import HTML\n\n\nfig, ax = plt.subplots()\n\n# Set up the initial plot\nscatter = ax.scatter(np_detach(x_y_tens[:, 0]), np_detach(x_y_tens[:, 1]), c=np_detach(cluster_assignments), cmap='viridis', alpha=0.5)\ncentroid_plot = ax.scatter(np_detach(centroids[:, 0]), np_detach(centroids[:, 1]), c='red', marker='x', s=100, label='Centroids')\nax.legend()\n\n&lt;matplotlib.legend.Legend at 0x7f5a3824ecb0&gt;\n\n\n\n\n\n\ndef init():\n    return scatter, centroid_plot\n\n\ndef update(frame):\n    global x_y_tens, centroids, cluster_assignments\n    \n    # Step 1: Assign x_y_tens points to the nearest centroid\n    cluster_assignments = assign_to_nearest_centroid(x_y_tens, centroids)\n\n    # Step 2: Update centroids\n    updated_centroids = update_centroids(x_y_tens, cluster_assignments, centroids)\n\n    # Update plot\n    scatter.set_array(np_detach(cluster_assignments))\n    centroid_plot.set_offsets(np_detach(updated_centroids))\n    centroids = updated_centroids\n    \n    return scatter, centroid_plot\n\n\nani = FuncAnimation(fig, update, frames=10, init_func=init, blit=True, interval=200, repeat=False)\nplt.close()\nHTML(ani.to_jshtml())\n\n\n\n\n\n\n\n\n  \n  \n    \n    \n      \n          \n      \n        \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n    \n    \n      \n      Once\n      \n      Loop\n      \n      Reflect"
   }
 ]

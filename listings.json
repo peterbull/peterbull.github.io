@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/230609-k-means/k_means.html",
       "/posts/230505-sd-pipeline/sd-pipeline.html",
       "/posts/230430-welcome/welcome.html"
     ]
